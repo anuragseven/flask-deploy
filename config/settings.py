@@ -10,8 +10,9 @@ class BaseConfig:
     DEBUG = False
     __db_user = os.environ.get('DATABASE_USER', 'postgres')
     __db_pw = os.environ.get('DATABASE_PASSWORD', 'admin')
-    __db_name = os.environ.get('DATABASE_PASSWORD', 'postgres')
+    __db_name = os.environ.get('DATABASE_NAME', 'postgres')
     SQLALCHEMY_DATABASE_URI = 'postgresql://{0}:{1}@db-postgres:5432/{2}'.format(__db_user, __db_pw, __db_name)
+    print("SQLALCHEMY_DATABASE_URI",SQLALCHEMY_DATABASE_URI)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
