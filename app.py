@@ -1,6 +1,8 @@
 import logging
 import os
 from flask import Flask
+from flask_migrate import Migrate
+
 import config
 from api import api
 from models import db
@@ -11,6 +13,7 @@ logging.basicConfig(level=logging.DEBUG,
                     handlers=[logging.StreamHandler()])
 
 logger = logging.getLogger()
+migrate = Migrate()
 
 
 def create_app():
@@ -22,6 +25,7 @@ def create_app():
     db.init_app(app)
 
     # define hello world page
+    migrate.init_app(app, db)
 
     @app.route('/')
     def hello_world():
